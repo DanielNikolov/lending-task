@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "console": "node -r esm src/js/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --require esm"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/DanielNikolov/lending-task#readme",
   "devDependencies": {
     "esm": "^3.2.25",
+    "mocha": "^6.2.2",
     "moment": "^2.24.0"
   }
 }

@@ -1,5 +1,6 @@
 import moment from 'moment';
 
+
 export default class Tranche {
     constructor(maxAmount, interestRate) {
         this._maxAmount = maxAmount;
@@ -20,24 +21,45 @@ export default class Tranche {
         if (!parsedDate.isValid()) {
             return false;
         }
+
         if (amountToBeInvested < 0 ||
             (this._totalInvestedAmount + amountToBeInvested > this._maxAmount)) {
             return false;
         }
+
         if (!this._userInvestments[userId]) {
             this._userInvestments[userId] = {
                 amount: 0.00,
-                timestamp: parsedDate.valueOf()
+                timeStamp: parsedDate.valueOf(),
+                periodStart: parsedDate.startOf('month').valueOf()
             };
         }
         this._userInvestments[userId].amount = this._userInvestments[userId].amount + amountToBeInvested;
+        this._totalInvestedAmount += amountToBeInvested;
         return true;
     }
 
-    getUserInterest(userId) {
-        if (!this._userInvestments[userId]) {
+    /**
+     * Calculates the user's interest based on interest rate, amount and period
+     * @param {string} userId user identifier
+     * @param {string} interestDateStr date of interest payment
+     * @returns {number} interest amount
+     */
+    getUserInterest(userId, interestDateStr) {
+        let userInvestment = this._userInvestments[userId];
+        if (!userInvestment) {
             return 0.00;
         }
+        let interestDate = moment(interestDateStr, 'DD-MM-YYYY');
+        if (!interestDate.isValid()) {
+            return 0.00;
+        }
+        interestDate = interestDate.startOf('month');
+        let startPeriod = moment(userInvestment.timeStamp).startOf('month');
+        if (interestDate.diff(startPeriod, 'm') < 1) {
+            return 0.00;
+        }
+        let diffDays = interestDate.diff(moment(userInvestment.timeStamp), 'd');
+        return ((userInvestment.amount * this._interestRate * diffDays) / interestDate.diff(startPeriod, 'd'));
     }
-
 }
