@@ -4,6 +4,7 @@
   "description": "Lending Task implemented using ES6 and NodeJS",
   "main": "index.js",
   "scripts": {
+    "console": "node -r esm src/js/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/DanielNikolov/lending-task/issues"
   },
-  "homepage": "https://github.com/DanielNikolov/lending-task#readme"
+  "homepage": "https://github.com/DanielNikolov/lending-task#readme",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "moment": "^2.24.0"
+  }
 }
