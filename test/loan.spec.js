@@ -20,6 +20,10 @@ describe('Loan', function () {
         assert.equal(loan.invest('user 1', 600, '30/09/2015', 'A'), false);
     })
 
+    it('test - invalid tranche id', () => {
+        assert.equal(loan.invest('user 1', 600, '30/09/2015', 'X'), false);
+    })
+
     it('test - invalid loan dates - after', () => {
         assert.equal(loan.invest('user 1', 600, '16/11/2015', 'A'), false);
     })

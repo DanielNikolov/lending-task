@@ -2,25 +2,32 @@
   "name": "lending-task",
   "version": "1.0.0",
   "description": "Lending Task implemented using ES6 and NodeJS",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "console": "node -r esm src/js/main.js",
-    "test": "mocha --require esm"
+    "build": "webpack",
+    "console": "node dist/js/main.js",
+    "test": "mocha --require esm",
+    "cover": "nyc --reporter=html mocha --require esm"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanielNikolov/lending-task.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniel Nikolov",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/DanielNikolov/lending-task/issues"
   },
   "homepage": "https://github.com/DanielNikolov/lending-task#readme",
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "babel-loader": "^8.0.5",
     "esm": "^3.2.25",
     "mocha": "^6.2.2",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "nyc": "^14.1.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   }
 }
