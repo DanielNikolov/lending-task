@@ -11,6 +11,7 @@ Project Setup:
 - In order to build the project you need to go to the project folder and type the following command: npm run build
 - In order to run test cases, type the following command in project folder: npm run test
 - In order to run coverage, type the following command in project folder: npm run cover
+- In order to run the project, type the following command in project folder: npm run console
 
 
 
