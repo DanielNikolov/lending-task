@@ -17,7 +17,7 @@ export default class Tranche {
      * @returns {boolean} true if investment is accepted, otherwise false
      */
     tryInvest(userId, investmentDate, amountToBeInvested) {
-        let parsedDate = moment(investmentDate, 'DD/MM/YYYY');
+        const parsedDate = moment(investmentDate, 'DD/MM/YYYY');
         if (!parsedDate.isValid()) {
             return false;
         }
@@ -46,7 +46,7 @@ export default class Tranche {
      * @returns {number} interest amount
      */
     getUserInterest(userId, interestDateStr) {
-        let userInvestment = this._userInvestments[userId];
+        const userInvestment = this._userInvestments[userId];
         if (!userInvestment) {
             return 0.00;
         }
@@ -55,11 +55,11 @@ export default class Tranche {
             return 0.00;
         }
         interestDate = interestDate.startOf('month');
-        let startPeriod = moment(userInvestment.timeStamp).startOf('month');
+        const startPeriod = moment(userInvestment.timeStamp).startOf('month');
         if (interestDate.diff(startPeriod, 'm') < 1) {
             return 0.00;
         }
-        let diffDays = interestDate.diff(moment(userInvestment.timeStamp), 'd');
+        const diffDays = interestDate.diff(moment(userInvestment.timeStamp), 'd');
         return ((userInvestment.amount * this._interestRate * diffDays) / interestDate.diff(startPeriod, 'd'));
     }
 }

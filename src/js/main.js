@@ -1,6 +1,6 @@
 import Loan from './loan';
 
-let loan  = new Loan('01/10/2015', '15/11/2015');
+const loan  = new Loan('01/10/2015', '15/11/2015');
 console.log('Investing 1000.00 by Investor 1 on 03/10/2015');
 console.log(`Investment result (true/false): ${loan.invest('user 1', 1000, '03/10/2015', 'A')}`);
 console.log('Investing 1.00 by Investor 2 on 04/10/2015');

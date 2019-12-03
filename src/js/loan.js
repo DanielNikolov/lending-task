@@ -20,18 +20,18 @@ export default class Loan {
      * @returns {boolean} true if investment passes fine, otherwise false
      */
     invest(userId, amount, date, trancheId) {
-        let tranche = this._tranches[trancheId];
+        const tranche = this._tranches[trancheId];
         if (!tranche) {
             return false;
         }
-        let timeStamp = moment(date, 'DD-MM-YYYY');
+        const timeStamp = moment(date, 'DD-MM-YYYY');
         if (!timeStamp.isValid()) {
             return false;
         }
         if (timeStamp < this._startDate || timeStamp > this._endDate) {
             return false;
         }
-        let result = tranche.tryInvest(userId, date, amount);
+        const result = tranche.tryInvest(userId, date, amount);
         this._tranches[trancheId] = tranche;
         return result;
     }
